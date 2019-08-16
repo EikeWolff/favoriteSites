@@ -1,5 +1,5 @@
 import './app.scss';
-import TappProject from './tapp';
+import TappProject from './js/TappProject';
 
 const init = async () => {
     'use strict';
