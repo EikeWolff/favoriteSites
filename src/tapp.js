@@ -20,6 +20,25 @@ class TappProject {
         document.querySelector('.here').addEventListener('click', () => this._gotoForm());
     }
 
+    _initForm() {
+        const $formIntern = this.$form.querySelector('.form_intern');
+        this.$formName = $formIntern.querySelector('.form-name').children;
+        this.$formEmail = $formIntern.querySelector('.form-email').children;
+        this.$formURL = $formIntern.querySelector('.form-url').children;
+        this.$formComnt = $formIntern.querySelector('.form-comment').children;
+
+        const $formBtn = $formIntern.querySelector('.btn-send');
+        $formBtn.addEventListener('click', () => this._sendForm());
+
+        this.$formName[0].setAttribute('pattern', "^[\\w'\\-,.][^0-9_!¡?÷?¿/\\\+=@#$%ˆ&*(){}|~<>;:[\\]]{2,}$");
+        this.$formEmail[0].setAttribute('pattern', "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
+        this.$formURL[0].setAttribute('pattern', "https?://(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)");
+        
+        this._setValidationListeners(this.$formName);
+        this._setValidationListeners(this.$formEmail);
+        this._setValidationListeners(this.$formURL);
+    }
+
     _setSearchEventListeners() {
         this.$searchInput.addEventListener('change', () => this._filterList());
         this.$searchInput.addEventListener('input', () => this._filterList());
@@ -27,51 +46,49 @@ class TappProject {
         this.$searchInput.addEventListener('keypress', () => this._filterList());
     }
 
-    _initForm() {
-        const $formIntern = this.$form.querySelector('.form_intern');
-        this.$formName = $formIntern.querySelector('.form-name');
-        this.$formEmail = $formIntern.querySelector('.form-email');
-        this.$formURL = $formIntern.querySelector('.form-url');
-        this.$formComnt = $formIntern.querySelector('.form-comment');
-
-        const $formBtn = $formIntern.querySelector('.btn-send');
-        $formBtn.addEventListener('click', () => this._sendForm());
-
-        // this.$formName.setAttribute('pattern', '[a-z] [a-z]');
-        this.$formEmail.setAttribute('pattern', "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
-        this._setValidationListeners(this.$formName);
-        this._setValidationListeners(this.$formEmail);
-    }
-
     _sendForm() {
-        this._validate(this.$formName);
-        this._validate(this.$formEmail);
+        if (this._validate(this.$formName) 
+            && this._validate(this.$formEmail)
+            && this._validate(this.$formURL))
 
-        if (chayns.env.user.isAuthenticated) {
-            const message = `Name: ${this.$formName.value}\nEmail: ${this.$formEmail}\nUrl: ${this.$formURL}\n Kommentar: ${this.$formComnt}`;
-            chayns.intercom.sendMessageToPage({
-                text: message
-            }).then(function (result) {
-                if (result.ok) {
-                    chayns.dialog.alert('', 'Dein Vorschlag wurde registriert.');
-                } else {
-                    chayns.dialog.alert('', 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
-                }
-            });
-        } else {
-            chayns.dialog.alert('Anmeldung notwendig', 'Um deine Seite zu registrieren, musst du angemeldet sein.');
-        }
+            if (chayns.env.user.isAuthenticated) {
+                const message = `Name: ${this.$formName[0].value}\nEmail: ${this.$formEmail[0].value}\nUrl: ${this.$formURL[0].value}\n Kommentar: ${this.$formComnt[0].value}`;
+                chayns.intercom.sendMessageToPage({
+                    text: message
+                }).then(function (result) {
+                    if (result.ok) {
+                        chayns.dialog.alert('', 'Dein Vorschlag wurde registriert.');
+                    } else {
+                        chayns.dialog.alert('', 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.');
+                    }
+                });
+            } else {
+                chayns.dialog.alert('Anmeldung notwendig', 'Um deine Seite zu registrieren, musst du angemeldet sein.');
+            }
+        else
+            chayns.dialog.alert('', 'Ungültige Eingabe.')
     }
 
     _setValidationListeners(formElement) {
-        formElement.addEventListener('invalid', (event) => this._validate(event, formElement));
+        formElement[0].addEventListener('onchange', () => this._validate(formElement));
+        formElement[0].addEventListener('input', () => this._validate(formElement));
+        formElement[0].addEventListener('keypress', () => this._validate(formElement));
+        formElement[0].addEventListener('paste', () => this._validate(formElement));
     }
 
-    _validate(event, formElement) {
-        // if (!event.target.validity.valid)
-        //     formElement.classList.add('invalid');
-        // else
-        //     formElement.classList.remove('invalid');
+    _validate(formElement) {
+        const valid = (formElement[0].required && new RegExp(formElement[0].getAttribute('pattern')).test(formElement[0].value))
+                        || (!formElement[0].required && formElement[0].value === '');
+
+        if (valid) {
+            formElement[0].classList.remove('input--invalid');
+            formElement[1].classList.remove('input--invalid');
+        } else {
+            formElement[0].classList.add('input--invalid');
+            formElement[1].classList.add('input--invalid');
+        }
+
+        return valid;
     }
 
     _appendData(data) {

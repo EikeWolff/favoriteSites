@@ -37,7 +37,7 @@
                         <div class="accordion__head__right search-bar">
                             <div>
                                 <div class="input-group">
-                                    <input class="input search-input" type="text" required="" value="">
+                                    <input class="input search-input" type="text">
                                     <label class="labelIcon">Suchen</label>
                                 </div>
                             </div>
@@ -60,10 +60,22 @@
 
                     <div class="accordion__body">
                         <div class="accordion__item form_intern">
-                            <input class='input form-name' type='text' placeholder='Name' required/>
-                            <input class='input form-email' type='text' placeholder='E-Mail' required/>
-                            <input class='input form-url' type='text' placeholder='URL' pattern='' />
-                            <textarea class='input textInp form-comment' type='text' placeholder='Kommentar'></textarea>
+                            <div class="input-group textInp form-name">
+                                <input class='input textInp' id="formName" type='text' required />
+                                <label class="" for="formName">Name</label>
+                            </div>
+                            <div class="input-group textInp form-email">
+                                <input class='input textInp' id="formEmail" type='text' required />
+                                <label class="" for="formEmail">E-Mail</label>
+                            </div>
+                            <div class="input-group textInp form-url">
+                                <input class='input textInp' id="formUrl" type='text' />
+                                <label class="" for="formUrl">URL</label>
+                            </div>
+                            <div class="input-group form-comment">
+                                <textarea class='input textInp' id="formComnt" type='text'></textarea>
+                                <label class="" for="formComnt">Kommentar</label>
+                            </div>
 
                             <div class="btn-send">
 
