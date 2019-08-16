@@ -66,48 +66,59 @@ class Form {
             'formUrl',
             intern
         );
-        this.taComnt = new Textarea('Kommentar', 'form-comnt', 'formComnt', intern);
+        this.taComnt = new Textarea(
+            'Kommentar',
+            'form-comnt',
+            'formComnt',
+            intern
+        );
+        const sendForm = () => {
+            if (chayns.env.user.isAuthenticated) {
+                const message = `Name: ${
+                    this.tfName.inputField.value
+                }\nEmail: ${this.tfEmail.inputField.value}\nUrl: ${
+                    this.tfUrl.inputField.value
+                }\n Kommentar: ${this.taComnt.inputField.value}`;
+                chayns.intercom
+                    .sendMessageToPage({
+                        text: message
+                    })
+                    .then((result) => {
+                        if (result.ok) {
+                            chayns.dialog.alert(
+                                '',
+                                'Dein Vorschlag wurde registriert.'
+                            );
+                        } else {
+                            chayns.dialog.alert(
+                                '',
+                                'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.'
+                            );
+                        }
+                    });
+            } else {
+                chayns.dialog.alert(
+                    'Anmeldung notwendig',
+                    'Um deine Seite zu registrieren, musst du angemeldet sein.'
+                );
+            }
+        };
 
         this.tfName._render();
         this.tfEmail._render();
         this.tfUrl._render();
         this.taComnt._render();
 
-        createValidateBtn('Registrieren', intern, this.tfName, this.tfEmail, this.tfUrl);
+        createValidateBtn(
+            'Registrieren',
+            intern,
+            sendForm,
+            this.tfName,
+            this.tfEmail,
+            this.tfUrl
+        );
 
         return form;
-    }
-
-    _sendForm() {
-        if (chayns.env.user.isAuthenticated) {
-            const message = `Name: ${this.tfName.inputField.value}\nEmail: ${
-                this.tfEmail.inputField.value
-            }\nUrl: ${this.tfUrl.inputField.value}\n Kommentar: ${
-                this.taComnt.inputField.value
-            }`;
-            chayns.intercom
-                .sendMessageToPage({
-                    text: message
-                })
-                .then((result) => {
-                    if (result.ok) {
-                        chayns.dialog.alert(
-                            '',
-                            'Dein Vorschlag wurde registriert.'
-                        );
-                    } else {
-                        chayns.dialog.alert(
-                            '',
-                            'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.'
-                        );
-                    }
-                });
-        } else {
-            chayns.dialog.alert(
-                'Anmeldung notwendig',
-                'Um deine Seite zu registrieren, musst du angemeldet sein.'
-            );
-        }
     }
 }
 

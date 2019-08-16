@@ -21,7 +21,7 @@ class Textfield {
             inputGroup,
             at('class', 'input textInp'),
             at('id', this.inputId),
-            at('required', this.required ? this.required : ''),
+            this.required ? at('required', '') : at('unrequired', ''),
             at('pattern', this.pattern)
         );
         this.inputLabel = createContentElement(
