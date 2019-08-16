@@ -1,29 +1,35 @@
+import { createElement, createContentElement, at } from '../helper';
+
 class Textarea {
-    constructor(placeholder, className, inputId) {
+    constructor(placeholder, className, inputId, appendTo) {
         this.placeholder = placeholder;
         this.className = className;
         this.inputId = inputId;
+        this.appendTo = appendTo;
     }
 
     _render() {
-        this.inputGroup = document.createElement('div');
-        this.inputField = document.createElement('textarea');
-        this.inputLabel = document.createElement('label');
-
-        this.inputGroup.className = `input-group textInp ${this.className}`;
-        this.inputField.className = `input textInp`;
-        this.inputLabel.className = ``;
-
-        this.inputField.id = this.inputId;
-        this.inputLabel.innerText = this.placeholder;
-        this.inputLabel.setAttribute('for', this.inputId);
-
-        this.inputGroup.appendChild(this.inputField);
-        this.inputGroup.appendChild(this.inputLabel);
+        const inputGroup = createElement(
+            'div',
+            this.appendTo,
+            at('class', `input-group textInp ${this.className}`)
+        );
+        this.inputField = createElement(
+            'textarea',
+            inputGroup,
+            at('class', 'input textInp'),
+            at('id', this.inputId)
+        );
+        this.inputLabel = createContentElement(
+            'label',
+            this.placeholder,
+            inputGroup,
+            at('for', this.inputId)
+        );
 
         this._initListeners();
 
-        return this.inputGroup;
+        return inputGroup;
     }
 
     _initListeners() {
@@ -34,10 +40,8 @@ class Textarea {
     }
 
     _setInputLabel() {
-        if (this.inputField.value !== '')
-            this.inputLabel.style.display = 'none';
-        else
-            this.inputLabel.style.display = '';
+        if (this.inputField.value !== '') this.inputLabel.style.display = 'none';
+        else this.inputLabel.style.display = '';
     }
 }
 

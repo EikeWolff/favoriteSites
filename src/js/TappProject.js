@@ -5,24 +5,30 @@ class TappProject {
         this._initDOMElements();
         this._setSearchEventListeners();
 
-        this.$form = new Form(this.$content, 'Hinzufügen', 'react-chayns-icon ts-plus');
+        this.$form = new Form(
+            this.$content,
+            'Hinzufügen',
+            'react-chayns-icon ts-plus'
+        );
+        this.$form = document.querySelector('.form');
 
-        fetch(`https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=love&Skip=0&Take=50`)
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => this._appendData(data.Data))
-            .catch((error) => console.log(error));
+        fetch(
+            'https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=love&Skip=0&Take=50'
+        )
+            .then(response => response.json())
+            .then(data => this._appendData(data.Data))
+            .catch(error => console.log(error));
     }
 
     _initDOMElements() {
         this.$accordionList = document.querySelector('.accordion-list');
         this.$content = document.querySelector('.tapp__content');
         this.$siteList = this.$accordionList.querySelector('.cc__list');
-        this.$searchInput = document.querySelector('.search-input')
-        this.$form = document.querySelector('.form');
+        this.$searchInput = document.querySelector('.search-input');
 
-        document.querySelector('.here').addEventListener('click', () => this._gotoForm());
+        document
+            .querySelector('.here')
+            .addEventListener('click', () => this._gotoForm());
     }
 
     _setSearchEventListeners() {
@@ -45,14 +51,12 @@ class TappProject {
     }
 
     _setInputLabel(inputElement) {
-        if (inputElement.value !== '')
-            inputElement.parentElement.classList.add('labelRight');
-        else
-            inputElement.parentElement.classList.remove('labelRight');
+        if (inputElement.value !== '') inputElement.parentElement.classList.add('labelRight');
+        else inputElement.parentElement.classList.remove('labelRight');
     }
 
     _appendData(data) {
-        this.$siteList.innerHTML = "";
+        this.$siteList.innerHTML = '';
 
         for (const site of data) {
             const listItem = document.createElement('div');
@@ -78,7 +82,9 @@ class TappProject {
             listItemSubtitle.className = 'list-item__subtitle ellipsis';
             listItemSpacer.className = 'list-item__spacer';
 
-            listItemImage.style.backgroundImage = `url("https://chayns.tobit.com/storage/${site.siteId}/Images/icon-72.png")`;
+            listItemImage.style.backgroundImage = `url("https://chayns.tobit.com/storage/${
+                site.siteId
+            }/Images/icon-72.png")`;
             listItemTitle.innerHTML = site.appstoreName;
             listItemSubtitle.innerHTML = '';
 
@@ -96,11 +102,13 @@ class TappProject {
 
     _filterList() {
         for (const listItem of this.$listItems) {
-            if ((listItem.querySelector('.list-item__title').innerHTML.toUpperCase())
-                .indexOf(this.$searchInput.value.toUpperCase()) > -1)
-                listItem.style.display = "";
-            else
-                listItem.style.display = "none";
+            if (
+                listItem
+                    .querySelector('.list-item__title')
+                    .innerHTML.toUpperCase()
+                    .indexOf(this.$searchInput.value.toUpperCase()) > -1
+            ) listItem.style.display = '';
+            else listItem.style.display = 'none';
         }
     }
 }

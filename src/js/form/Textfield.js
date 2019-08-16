@@ -1,35 +1,39 @@
+import { createElement, createContentElement, at } from '../helper';
+
 class Textfield {
-    constructor(placeholder, pattern, required, className, inputId) {
+    constructor(placeholder, pattern, required, className, inputId, appendTo) {
         this.placeholder = placeholder;
         this.pattern = pattern;
         this.required = required;
         this.className = className;
         this.inputId = inputId;
+        this.appendTo = appendTo;
     }
 
     _render() {
-        this.inputGroup = document.createElement('div');
-        this.inputField = document.createElement('input');
-        this.inputLabel = document.createElement('label');
-
-        this.inputGroup.className = `input-group textInp ${this.className}`;
-        this.inputField.className = `input textInp`;
-        this.inputLabel.className = ``;
-
-        this.inputField.id = this.inputId;
-        if (this.required)
-            this.inputField.setAttribute('required', this.required);
-        this.inputLabel.innerText = this.placeholder;
-        this.inputLabel.setAttribute('for', this.inputId);
-
-        this.inputField.setAttribute('pattern', this.pattern);
-
-        this.inputGroup.appendChild(this.inputField);
-        this.inputGroup.appendChild(this.inputLabel);
+        const inputGroup = createElement(
+            'div',
+            this.appendTo,
+            at('class', `input-group textInp ${this.className}`)
+        );
+        this.inputField = createElement(
+            'input',
+            inputGroup,
+            at('class', 'input textInp'),
+            at('id', this.inputId),
+            at('required', this.required ? this.required : ''),
+            at('pattern', this.pattern)
+        );
+        this.inputLabel = createContentElement(
+            'label',
+            this.placeholder,
+            inputGroup,
+            at('for', this.inputId)
+        );
 
         this._initListeners();
 
-        return this.inputGroup;
+        return inputGroup;
     }
 
     _initListeners() {
@@ -52,15 +56,16 @@ class Textfield {
     }
 
     _setInputLabel() {
-        if (this.inputField.value !== '')
-            this.inputField.parentElement.classList.add('labelRight');
-        else
-            this.inputField.parentElement.classList.remove('labelRight');
+        if (this.inputField.value !== '') this.inputField.parentElement.classList.add('labelRight');
+        else this.inputField.parentElement.classList.remove('labelRight');
     }
 
     _validate() {
-        const valid = (this.inputField.required && new RegExp(this.inputField.getAttribute('pattern')).test(this.inputField.value))
-                        || (!this.inputField.required && this.inputField.value === '');
+        const valid = (this.inputField.required
+                && new RegExp(this.inputField.getAttribute('pattern')).test(
+                    this.inputField.value
+                ))
+            || (!this.inputField.required && this.inputField.value === '');
 
         if (valid) {
             this.inputField.classList.remove('input--invalid');
