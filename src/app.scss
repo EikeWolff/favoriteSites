@@ -11,6 +11,7 @@
     .here {
         text-decoration: underline;
         color: blue;
+        cursor:pointer;
     }
 }
 
@@ -29,13 +30,13 @@
 
     .form-name,
     .form-email,
-    .form-address,
+    .form-url,
     .form-comment {
         width: 100%;
         margin-bottom: 5px;
     }
 
-    .from_intern {
+    .form_intern {
         display: flex;
         flex-direction: column;
     }

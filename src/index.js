@@ -8,7 +8,11 @@ const init = async () => {
         await chayns.ready;
         chayns.ui.initAll();
 
-        TappProject();
+        try {
+            new TappProject();
+        } catch(err) {
+            console.log(err);
+        }
     } catch (err) {
         console.error('No chayns environment found', err);
     }

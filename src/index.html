@@ -26,7 +26,7 @@
                 </div>
             </div>
             <div class="tapp__content">
-                <div class="accordion accordion--open" data-group="1">
+                <div class="accordion accordion--open accordion-list" data-group="1">
                     <div class="accordion__head title">
                         <div class="accordion__head__icon accordion--trigger">
                             <i class="ts-angle-right"></i>
@@ -45,54 +45,6 @@
                     </div>
                     <div class="accordion__body">
                         <div class="cc__list list--expandable">
-                            <div class="list-item list-item--clickable">
-                                <div class="list-item__header">
-                                    <div class="list-item__image"
-                                        style="background-image: url(&quot;https://chayns.tobit.com/storage/60038-22141/Images/icon-72.png&quot;);">
-                                    </div>
-                                    <div class="list-item__titles">
-                                        <div class="list-item__title ellipsis">Tobit Software</div>
-                                        <div class="list-item__subtitle ellipsis">Website der Tobit Software AG</div>
-                                    </div>
-                                    <div class="list-item__spacer"></div>
-                                </div>
-                            </div>
-                            <div class="list-item list-item--clickable">
-                                <div class="list-item__header">
-                                    <div class="list-item__image"
-                                        style="background-image: url(&quot;https://chayns.tobit.com/storage/60038-22141/Images/icon-72.png&quot;);">
-                                    </div>
-                                    <div class="list-item__titles">
-                                        <div class="list-item__title ellipsis">ListItem</div>
-                                        <div class="list-item__subtitle ellipsis">Description</div>
-                                    </div>
-                                    <div class="list-item__spacer"></div>
-                                </div>
-                            </div>
-                            <div class="list-item list-item--clickable">
-                                <div class="list-item__header">
-                                    <div class="list-item__image"
-                                        style="background-image: url(&quot;https://chayns.tobit.com/storage/60038-22141/Images/icon-72.png&quot;);">
-                                    </div>
-                                    <div class="list-item__titles">
-                                        <div class="list-item__title ellipsis">ListItem</div>
-                                        <div class="list-item__subtitle ellipsis">Description</div>
-                                    </div>
-                                    <div class="list-item__spacer"></div>
-                                </div>
-                            </div>
-                            <div class="list-item list-item--clickable">
-                                <div class="list-item__header">
-                                    <div class="list-item__image"
-                                        style="background-image: url(&quot;https://chayns.tobit.com/storage/60038-22141/Images/icon-72.png&quot;);">
-                                    </div>
-                                    <div class="list-item__titles">
-                                        <div class="list-item__title ellipsis">ListItem</div>
-                                        <div class="list-item__subtitle ellipsis">Description</div>
-                                    </div>
-                                    <div class="list-item__spacer"></div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -107,10 +59,10 @@
                     </div>
 
                     <div class="accordion__body">
-                        <div class="accordion__item from_intern">
-                            <input class='input form-name' type='text' placeholder='Name' />
-                            <input class='input form-email' type='text' placeholder='E-Mail' />
-                            <input class='input form-address' type='text' placeholder='URL' />
+                        <div class="accordion__item form_intern">
+                            <input class='input form-name' type='text' placeholder='Name' pattern='' required/>
+                            <input class='input form-email' type='text' placeholder='E-Mail' pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?" required/>
+                            <input class='input form-url' type='text' placeholder='URL' pattern='' />
                             <textarea class='input textInp form-comment' type='text' placeholder='Kommentar'></textarea>
 
                             <div class="btn-send">
