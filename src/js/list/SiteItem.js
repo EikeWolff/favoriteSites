@@ -1,5 +1,4 @@
 import { createElement, c } from '../helper';
-import FormAddSide from '../FormAddSide';
 
 const createSiteItem = (site, appendTo) => {
     const listItem = createElement(

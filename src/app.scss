@@ -8,32 +8,34 @@
     }
 }
 
-.acc-head-list {
-    .search-list {
-        width: 0%;
-        transition: width 300ms ease-in-out;
+.tapp__content {
+    .search-group-list {
+        width: 0;
+        margin-left: 100%;
+        transition: all 300ms ease-in-out;
     }
-    
+        
     .accordion--open {
-        .search-list {
-            width: 40%;
+        .search-group-list {
+            width: 100%;
+            margin-left: 0;
         }
     }
-}
-
-.acc-body-form {
-    .input-group {
-        width: 100%;
-        margin-bottom: 5px;
-    }
-
-    .acc-item-intern {
-        display: flex;
-        flex-direction: column;
-        align-content: stretch;
-    }
-
-    .btn-send {
-        text-align: center;
+    
+    .acc-body-form {
+        .input-group {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+    
+        .acc-item-intern {
+            display: flex;
+            flex-direction: column;
+            align-content: stretch;
+        }
+    
+        .btn-send {
+            text-align: center;
+        }
     }
 }

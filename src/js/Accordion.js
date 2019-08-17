@@ -37,7 +37,7 @@ export const createAccordion = (
         'div',
         title,
         head,
-        c('accordion__head__title  accordion--trigger')
+        c(`accordion__head__title  accordion--trigger acc-title-${classSuffix}`)
     );
     createElement(
         'div',

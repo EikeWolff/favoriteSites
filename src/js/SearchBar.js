@@ -17,10 +17,14 @@ class SearchBar {
     }
 
     render() {
+        const root = createElement(
+            'div',
+            this.appendTo
+        );
         const inputGroup = createElement(
             'div',
-            this.appendTo,
-            c('input-group')
+            root,
+            c(`input-group search-group-${this.classSuffix}`)
         );
         this.$searchInput = createElement(
             'input',

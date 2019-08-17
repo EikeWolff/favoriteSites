@@ -9,7 +9,7 @@ const init = async () => {
         chayns.ui.initAll();
 
         try {
-            new Tapp().render();
+            new Tapp(document.querySelector('#app')).render();
         } catch (err) {
             console.log(err);
         }

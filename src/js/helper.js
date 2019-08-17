@@ -4,7 +4,7 @@ export const createContentElement = (tag, content, appendTo, ...attributes) => {
     const element = document.createElement(tag);
     if (content != null) element.innerText = content;
     attributes.forEach(attribute => element.setAttribute(attribute[0], attribute[1]));
-    appendTo.appendChild(element);
+    if (appendTo != null) appendTo.appendChild(element);
     return element;
 };
 
@@ -23,4 +23,15 @@ export const setInputLabel = (inputElement, inputLabel) => {
             else inputLabel.style.display = '';
             break;
     }
+};
+
+export const createActionText = (text, action, appendTo) => {
+    const actionText = createContentElement(
+        'strong',
+        text,
+        appendTo,
+        at('style', 'text-decoration: underline; color: blue; cursor:pointer;')
+    );
+    actionText.addEventListener('click', action);
+    return actionText;
 };
