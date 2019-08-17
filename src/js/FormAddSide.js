@@ -88,9 +88,9 @@ class FormAddSide {
             txt.commitBtn,
             intern,
             sendForm,
-            this.tfName,
-            this.tfEmail,
-            this.tfUrl
+            tfName,
+            tfEmail,
+            tfUrl
         );
 
         return form;

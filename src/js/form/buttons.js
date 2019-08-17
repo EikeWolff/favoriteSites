@@ -6,7 +6,7 @@ const createValidateBtn = (text, appendTo, commitFctn, ...validateElements) => {
         () => {
             let valid = true;
             validateElements.forEach((element) => {
-                if (!element._validate()) valid = false;
+                if (!element.validate()) valid = false;
             });
 
             if (valid) commitFctn();

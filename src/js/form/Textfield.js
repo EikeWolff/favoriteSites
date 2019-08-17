@@ -44,23 +44,23 @@ class Textfield {
     _initListeners() {
         this.inputField.addEventListener('change', () => {
             setInputLabel(this.inputField);
-            this._validate();
+            this.validate();
         });
         this.inputField.addEventListener('input', () => {
             setInputLabel(this.inputField);
-            this._validate();
+            this.validate();
         });
         this.inputField.addEventListener('paste', () => {
             setInputLabel(this.inputField);
-            this._validate();
+            this.validate();
         });
         this.inputField.addEventListener('keypress', () => {
             setInputLabel(this.inputField);
-            this._validate();
+            this.validate();
         });
     }
 
-    _validate() {
+    validate() {
         const valid = (this.inputField.required
                 && new RegExp(this.inputField.getAttribute('pattern')).test(
                     this.inputField.value
