@@ -1,5 +1,5 @@
 import './app.scss';
-import TappProject from './js/TappProject';
+import Tapp from './js/Tapp';
 
 const init = async () => {
     'use strict';
@@ -9,8 +9,8 @@ const init = async () => {
         chayns.ui.initAll();
 
         try {
-            new TappProject();
-        } catch(err) {
+            new Tapp().render();
+        } catch (err) {
             console.log(err);
         }
     } catch (err) {

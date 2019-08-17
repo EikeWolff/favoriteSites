@@ -9,3 +9,18 @@ export const createContentElement = (tag, content, appendTo, ...attributes) => {
 };
 
 export const at = (name, value) => [name, value];
+export const c = value => ['class', value];
+
+export const setInputLabel = (inputElement, inputLabel) => {
+    switch (inputElement.type) {
+        default:
+        case 'text':
+            if (inputElement.value !== '') inputElement.parentElement.classList.add('labelRight');
+            else inputElement.parentElement.classList.remove('labelRight');
+            break;
+        case 'textarea':
+            if (inputElement.value !== '') inputLabel.style.display = 'none';
+            else inputLabel.style.display = '';
+            break;
+    }
+};

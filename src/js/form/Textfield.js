@@ -1,4 +1,9 @@
-import { createElement, createContentElement, at } from '../helper';
+import {
+    createElement,
+    createContentElement,
+    at,
+    setInputLabel
+} from '../helper';
 
 class Textfield {
     constructor(placeholder, pattern, required, className, inputId, appendTo) {
@@ -10,7 +15,7 @@ class Textfield {
         this.appendTo = appendTo;
     }
 
-    _render() {
+    render() {
         const inputGroup = createElement(
             'div',
             this.appendTo,
@@ -38,26 +43,21 @@ class Textfield {
 
     _initListeners() {
         this.inputField.addEventListener('change', () => {
-            this._setInputLabel();
+            setInputLabel(this.inputField);
             this._validate();
         });
         this.inputField.addEventListener('input', () => {
-            this._setInputLabel();
+            setInputLabel(this.inputField);
             this._validate();
         });
         this.inputField.addEventListener('paste', () => {
-            this._setInputLabel();
+            setInputLabel(this.inputField);
             this._validate();
         });
         this.inputField.addEventListener('keypress', () => {
-            this._setInputLabel();
+            setInputLabel(this.inputField);
             this._validate();
         });
-    }
-
-    _setInputLabel() {
-        if (this.inputField.value !== '') this.inputField.parentElement.classList.add('labelRight');
-        else this.inputField.parentElement.classList.remove('labelRight');
     }
 
     _validate() {

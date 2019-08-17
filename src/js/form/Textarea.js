@@ -1,4 +1,9 @@
-import { createElement, createContentElement, at } from '../helper';
+import {
+    createElement,
+    createContentElement,
+    at,
+    setInputLabel
+} from '../helper';
 
 class Textarea {
     constructor(placeholder, className, inputId, appendTo) {
@@ -8,7 +13,7 @@ class Textarea {
         this.appendTo = appendTo;
     }
 
-    _render() {
+    render() {
         const inputGroup = createElement(
             'div',
             this.appendTo,
@@ -33,15 +38,10 @@ class Textarea {
     }
 
     _initListeners() {
-        this.inputField.addEventListener('change', () => this._setInputLabel());
-        this.inputField.addEventListener('input', () => this._setInputLabel());
-        this.inputField.addEventListener('paste', () => this._setInputLabel());
-        this.inputField.addEventListener('keypress', () => this._setInputLabel());
-    }
-
-    _setInputLabel() {
-        if (this.inputField.value !== '') this.inputLabel.style.display = 'none';
-        else this.inputLabel.style.display = '';
+        this.inputField.addEventListener('change', () => setInputLabel(this.inputField, this.inputLabel));
+        this.inputField.addEventListener('input', () => setInputLabel(this.inputField, this.inputLabel));
+        this.inputField.addEventListener('paste', () => setInputLabel(this.inputField, this.inputLabel));
+        this.inputField.addEventListener('keypress', () => setInputLabel(this.inputField, this.inputLabel));
     }
 }
 

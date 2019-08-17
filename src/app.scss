@@ -1,5 +1,4 @@
 .tapp__intro {
-
     .intro_text {
         font-size: 17px;
     }
@@ -7,35 +6,31 @@
     .headline {
         font-size: 35px;
     }
+}
 
-    .here {
-        text-decoration: underline;
-        color: blue;
-        cursor:pointer;
+.acc-head-list {
+    .search-list {
+        width: 0%;
+        transition: width 300ms ease-in-out;
+    }
+    
+    .accordion--open {
+        .search-list {
+            width: 40%;
+        }
     }
 }
 
-.search-bar {
-    width: 0%;
-    transition: width 300ms ease-in-out;
-}
-
-.accordion--open {
-    .search-bar {
-        width: 40%;
-    }
-}
-
-.form {
-
+.acc-body-form {
     .input-group {
         width: 100%;
         margin-bottom: 5px;
     }
 
-    .form_intern {
+    .acc-item-intern {
         display: flex;
         flex-direction: column;
+        align-content: stretch;
     }
 
     .btn-send {
