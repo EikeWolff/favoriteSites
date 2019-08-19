@@ -2,12 +2,12 @@ import Textfield from './form/Textfield';
 import Textarea from './form/Textarea';
 import { createAccordion, createAccordionItem } from './Accordion';
 import createValidateBtn from './form/buttons';
-import { form as txt } from './txt';
+import { form as txt, pattern } from './txt';
 
 class FormAddSide {
-    constructor(appendTo, title, icon) {
+    constructor(appendTo, icon, title) {
         this.appendTo = appendTo;
-        this.title = title;
+        this.title = (title == null) ? txt.title : title;
         this.icon = icon;
     }
 
@@ -28,7 +28,7 @@ class FormAddSide {
 
         const tfName = new Textfield(
             txt.name,
-            "^[\\w'\\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\\]]{2,}$",
+            pattern.name,
             true,
             'form-name',
             'formName',
@@ -36,7 +36,7 @@ class FormAddSide {
         );
         const tfEmail = new Textfield(
             txt.email,
-            "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
+            pattern.email,
             true,
             'form-email',
             'formEmail',
@@ -44,7 +44,7 @@ class FormAddSide {
         );
         const tfUrl = new Textfield(
             txt.url,
-            'https?://(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)',
+            pattern.url,
             false,
             'form-url',
             'formUrl',

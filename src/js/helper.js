@@ -1,3 +1,5 @@
+export const createDiv = (appendTo, ...attributes) => createElement('div', appendTo, ...attributes);
+
 export const createElement = (tag, appendTo, ...attributes) => createContentElement(tag, null, appendTo, ...attributes);
 
 export const createContentElement = (tag, content, appendTo, ...attributes) => {

@@ -2,12 +2,13 @@ import { createElement, c } from './helper';
 import { createAccordionList } from './Accordion';
 import SearchBar from './SearchBar';
 import createSiteItem from './list/SiteItem';
+import { list } from './txt';
 
 class SearchList {
     constructor(appendTo, title) {
         this.appendTo = appendTo;
-        this.title = title;
-        this.searchValue = 'love';
+        this.title = (title == null) ? list.title : title;
+        this.searchValue = list.standardSearch;
     }
 
     render() {
@@ -40,7 +41,7 @@ class SearchList {
             },
             async (searchValue, appendTo) => {
                 await fetch(
-                    `https://chayns1.tobit.com/TappApi/Site/SlitteApp?SearchString=${searchValue}&Skip=0&Take=50`
+                    `${list.fetchLinkStart}${searchValue}${list.fetchLinkEnd}`
                 )
                     .then(response => response.json())
                     .then((data) => {
@@ -58,7 +59,7 @@ class SearchList {
         );
 
         searchbar.render();
-        searchbar.trigger('love');
+        searchbar.trigger(this.searchValue);
     }
 }
 
