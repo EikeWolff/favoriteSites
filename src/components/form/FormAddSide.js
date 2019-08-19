@@ -75,6 +75,11 @@ class FormAddSide {
                     })
                     .then((result) => {
                         if (result.ok) {
+                            tfName.reset();
+                            tfEmail.reset();
+                            tfUrl.reset();
+                            taComnt.reset();
+
                             chayns.dialog.alert('', txt.commitOk);
                         } else {
                             chayns.dialog.alert('', txt.commitFail);
