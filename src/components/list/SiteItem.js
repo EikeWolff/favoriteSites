@@ -1,26 +1,11 @@
-import { createDiv, c } from '../helper';
+import { createDiv, c } from '../utils/helper';
 
 const createSiteItem = (site, $appendTo) => {
-    const $listItem = createDiv(
-        $appendTo,
-        c('list-item list-item--clickable')
-    );
-    const $listItemHeader = createDiv(
-        $listItem,
-        c('list-item__header')
-    );
-    const $listItemBack = createDiv(
-        $listItemHeader,
-        c('list-item__image')
-    );
-    const $listItemImage = createDiv(
-        $listItemBack,
-        c('list-item__image')
-    );
-    const $listItemTitles = createDiv(
-        $listItemHeader,
-        c('list-item__titles')
-    );
+    const $listItem = createDiv($appendTo, c('list-item list-item--clickable'));
+    const $listItemHeader = createDiv($listItem, c('list-item__header'));
+    const $listItemBack = createDiv($listItemHeader, c('list-item__image'));
+    const $listItemImage = createDiv($listItemBack, c('list-item__image'));
+    const $listItemTitles = createDiv($listItemHeader, c('list-item__titles'));
     const $listItemTitle = createDiv(
         $listItemTitles,
         c('list-item__title ellipsis')

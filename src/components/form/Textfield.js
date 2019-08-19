@@ -3,7 +3,7 @@ import {
     createContentElement,
     at,
     setInputLabel
-} from '../helper';
+} from '../utils/helper';
 
 class Textfield {
     constructor(
@@ -87,6 +87,10 @@ class Textfield {
         }
 
         return valid;
+    }
+
+    get value() {
+        return this.$inputField.value;
     }
 }
 

@@ -1,9 +1,11 @@
-import Textfield from './form/Textfield';
-import Textarea from './form/Textarea';
-import { createAccordion, createAccordionItem } from './Accordion';
-import createValidateBtn from './form/buttons';
-import { form as txt, pattern } from './txt';
-import { login } from './helper';
+import Textfield from './Textfield';
+import Textarea from './Textarea';
+import Accordion from '../accordion/Accordion';
+import buttons from './buttons';
+import txt from './txtForm';
+import pattern from '../utils/txt';
+import { login } from '../utils/helper';
+import './formAddSide.scss';
 
 class FormAddSide {
     constructor($appendTo, icon, title) {
@@ -13,7 +15,7 @@ class FormAddSide {
     }
 
     render() {
-        const $form = createAccordion(
+        const $form = Accordion.createAccordion(
             this.title,
             this.icon,
             false,
@@ -21,7 +23,7 @@ class FormAddSide {
             'form',
             this.$appendTo
         );
-        const $intern = createAccordionItem(
+        const $intern = Accordion.createAccordionItem(
             'div',
             $form.querySelector('.acc-body-form'),
             'intern'
@@ -62,11 +64,11 @@ class FormAddSide {
         );
         const sendForm = () => {
             const send = () => {
-                const message = `${txt.name}: ${tfName.inputField.value}\n ${
+                const message = `${txt.name}: ${tfName.value}\n ${
                     txt.email
-                }: ${tfEmail.inputField.value}\n ${txt.url}: ${
-                    tfUrl.inputField.value
-                }\n ${txt.comnt}: ${taComnt.inputField.value}`;
+                }: ${tfEmail.value}\n ${txt.url}: ${
+                    tfUrl.value
+                }\n ${txt.comnt}: ${taComnt.value}`;
                 chayns.intercom
                     .sendMessageToPage({
                         text: message
@@ -92,7 +94,7 @@ class FormAddSide {
         tfUrl.render();
         taComnt.render();
 
-        createValidateBtn(
+        buttons.createValidateBtn(
             txt.commitBtn,
             $intern,
             sendForm,

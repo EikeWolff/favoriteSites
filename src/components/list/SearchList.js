@@ -1,18 +1,18 @@
-import { createDiv, c } from './helper';
-import { createAccordionList } from './Accordion';
+import { createDiv, c } from '../utils/helper';
+import Accordion from '../accordion/Accordion';
 import SearchBar from './SearchBar';
-import createSiteItem from './list/SiteItem';
-import { list } from './txt';
+import createSiteItem from './SiteItem';
+import txt from './txtList';
 
 class SearchList {
     constructor($appendTo, title) {
         this.$appendTo = $appendTo;
-        this.title = (title == null) ? list.title : title;
-        this.searchValue = list.standardSearch;
+        this.title = title == null ? txt.title : title;
+        this.searchValue = txt.standardSearch;
     }
 
     render() {
-        const $accordion = createAccordionList(
+        const $accordion = Accordion.createAccordionList(
             this.title,
             'ts-angle-right',
             true,
@@ -26,9 +26,9 @@ class SearchList {
         const searchbar = new SearchBar(
             $accordion.querySelector('.acc-badge-list'),
             'list',
+            // While the user is typing the list elements are filtered
             ($input, changeObjects) => {
-                for (const object of changeObjects)
-                {
+                for (const object of changeObjects) {
                     if (
                         object
                             .querySelector('.list-item__title')
@@ -38,9 +38,11 @@ class SearchList {
                     else object.style.display = 'none';
                 }
             },
+            // When the user finished typing the new data is loaded
             async (searchValue, $appendTo) => {
+                chayns.showWaitCursor();
                 await fetch(
-                    `${list.fetchLinkStart}${searchValue}${list.fetchLinkEnd}`
+                    `${txt.fetchLinkStart}${searchValue}${txt.fetchLinkEnd}`
                 )
                     .then(response => response.json())
                     .then((data) => {
@@ -53,6 +55,7 @@ class SearchList {
                         });
                     })
                     .catch(error => console.log(error));
+                chayns.hideWaitCursor();
             },
             this.$siteList
         );

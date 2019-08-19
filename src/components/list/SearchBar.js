@@ -5,7 +5,8 @@ import {
     at,
     c,
     setInputLabel
-} from './helper';
+} from '../utils/helper';
+import './searchBar.scss';
 
 class SearchBar {
     constructor($appendTo, classSuffix, onChange, onChangeFinish, $changeItem) {
@@ -18,9 +19,7 @@ class SearchBar {
     }
 
     render() {
-        const $root = createDiv(
-            this.$appendTo
-        );
+        const $root = createDiv(this.$appendTo);
         const $inputGroup = createDiv(
             $root,
             c(`input-group search-group-${this.classSuffix}`)
@@ -39,26 +38,24 @@ class SearchBar {
             at('for', `search-${this.classSuffix}`)
         );
 
-        this._setSearchEventListeners();
+        this.$searchInput.addEventListener('keyup', () => {
+            clearTimeout(this.timeout);
+
+            // This is done while the user is typing
+            this.onChange(this.$searchInput, this.$changeItem.children);
+
+            this.timeout = setTimeout(() => {
+                // This is done after the user stopped typing
+                setInputLabel(this.$searchInput);
+                this.onChangeFinish(this.$searchInput.value, this.$changeItem);
+            }, 800);
+        });
 
         return $inputGroup;
     }
 
     trigger(input) {
         this.onChangeFinish(input, this.$changeItem);
-    }
-
-    _setSearchEventListeners() {
-        this.$searchInput.addEventListener('keyup', () => {
-            clearTimeout(this.timeout);
-
-            this.onChange(this.$searchInput, this.$changeItem.children);
-
-            this.timeout = setTimeout(() => {
-                setInputLabel(this.$searchInput);
-                this.onChangeFinish(this.$searchInput.value, this.$changeItem);
-            }, 500);
-        });
     }
 }
 
