@@ -47,6 +47,11 @@ class Textarea {
     get value() {
         return this.$inputField.value;
     }
+
+    reset() {
+        this.$inputField.value = '';
+        setInputLabel(this.$inputField, this.$inputLabel);
+    }
 }
 
 export default Textarea;

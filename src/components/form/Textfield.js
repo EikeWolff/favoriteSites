@@ -72,11 +72,15 @@ class Textfield {
         });
     }
 
-    validate() {
-        const valid = (!this.$inputField.required && this.$inputField.value === '')
-            || new RegExp(this.$inputField.getAttribute('pattern')).test(
-                this.$inputField.value
-            );
+    validate(reset) {
+        let valid = true;
+
+        if (reset !== true) {
+            valid = (!this.$inputField.required && this.$inputField.value === '')
+                || new RegExp(this.$inputField.getAttribute('pattern')).test(
+                    this.$inputField.value
+                );
+        }
 
         if (valid) {
             this.$inputField.classList.remove('input--invalid');
@@ -91,6 +95,12 @@ class Textfield {
 
     get value() {
         return this.$inputField.value;
+    }
+
+    reset() {
+        this.$inputField.value = '';
+        setInputLabel(this.$inputField, this.$inputLabel);
+        this.validate(true);
     }
 }
 
