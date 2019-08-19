@@ -5,5 +5,6 @@ export default {
     txt_fetchLinkEnd: '&Skip=0&Take=50',
     txt_standardSearch: 'love',
 
+    txt_siteImage: 'https://sub60.tobit.com/l/',
     txt_noName: 'Kein Seitenname vorhanden 😕'
 };
