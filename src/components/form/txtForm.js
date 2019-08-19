@@ -1,19 +1,19 @@
 export default {
-    title: 'Hinzufügen',
+    txt_title: 'Hinzufügen',
 
-    name: 'Name',
-    email: 'Email',
-    url: 'Url',
-    comnt: 'Kommentar',
+    txt_name: 'Name',
+    txt_email: 'Email',
+    txt_url: 'Url',
+    txt_comnt: 'Kommentar',
 
-    nameStandard: '',
-    emailStandard: '',
-    urlStandard: '',
+    txt_nameStandard: '',
+    txt_emailStandard: '',
+    txt_urlStandard: '',
 
-    commitBtn: 'Registrieren',
-    commitOk: 'Dein Vorschlag wurde registriert.',
-    commitFail: 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
+    txt_commitBtn: 'Registrieren',
+    txt_commitOk: 'Dein Vorschlag wurde registriert.',
+    txt_commitFail: 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
 
-    loginFail: '',
-    loginFailSub: 'Um deine Seite zu registrieren, musst du angemeldet sein.'
+    txt_loginFail: '',
+    txt_loginFailSub: 'Um deine Seite zu registrieren, musst du angemeldet sein.'
 };
