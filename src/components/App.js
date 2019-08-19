@@ -1,14 +1,11 @@
 import SearchList from './SearchList';
 import FormAddSide from './FormAddSide';
 import {
-    createDiv,
-    createContentElement,
-    c,
-    createActionText
+ createDiv, createContentElement, c, createActionText
 } from './helper';
 import { intro as txt } from './txt';
 
-class Tapp {
+class App {
     constructor($appendTo) {
         this.$appendTo = $appendTo;
     }
@@ -20,12 +17,7 @@ class Tapp {
 
         createContentElement('h1', txt.title, $intro, c('headline'));
         const $introContent = createDiv($intro, c('intro-content'));
-        createContentElement(
-            'p',
-            txt.start,
-            $introContent,
-            c('intro_text')
-        );
+        createContentElement('p', txt.start, $introContent, c('intro_text'));
         const $introText = createContentElement(
             'p',
             txt.middle,
@@ -47,11 +39,8 @@ class Tapp {
 
         new SearchList($content).render();
 
-        new FormAddSide(
-            $content,
-            'react-chayns-icon ts-plus'
-        ).render();
+        new FormAddSide($content, 'react-chayns-icon ts-plus').render();
     }
 }
 
-export default Tapp;
+export default App;

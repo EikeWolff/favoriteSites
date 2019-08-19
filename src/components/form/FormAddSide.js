@@ -1,7 +1,7 @@
-import Textfield from './form/Textfield';
-import Textarea from './form/Textarea';
-import { createAccordion, createAccordionItem } from './Accordion';
-import createValidateBtn from './form/buttons';
+import Textfield from './Textfield';
+import Textarea from './Textarea';
+import { createAccordion, createAccordionItem } from '../accordion/Accordion';
+import createValidateBtn from './buttons';
 import { form as txt, pattern } from './txt';
 import { login } from './helper';
 

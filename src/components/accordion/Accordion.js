@@ -1,6 +1,10 @@
 import {
-    createDiv, createElement, createContentElement, at, c
-} from './helper';
+    createDiv,
+    createElement,
+    createContentElement,
+    at,
+    c
+} from '../utils/helper';
 
 export const createAccordionList = (title, icon, open, classSuffix, appendTo) => createAccordion(title, icon, open, 'accordion-list', classSuffix, appendTo);
 
@@ -36,14 +40,8 @@ export const createAccordion = (
         $head,
         c(`accordion__head__title  accordion--trigger acc-title-${classSuffix}`)
     );
-    createDiv(
-        $head,
-        c(`accordion__head__right acc-badge-${classSuffix}`)
-    );
-    createDiv(
-        $accordion,
-        c(`accordion__body acc-body-${classSuffix}`)
-    );
+    createDiv($head, c(`accordion__head__right acc-badge-${classSuffix}`));
+    createDiv($accordion, c(`accordion__body acc-body-${classSuffix}`));
 
     return $accordion;
 };

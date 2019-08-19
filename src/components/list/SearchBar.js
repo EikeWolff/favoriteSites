@@ -5,7 +5,7 @@ import {
     at,
     c,
     setInputLabel
-} from './helper';
+} from '../utils/helper';
 
 class SearchBar {
     constructor($appendTo, classSuffix, onChange, onChangeFinish, $changeItem) {
@@ -18,9 +18,7 @@ class SearchBar {
     }
 
     render() {
-        const $root = createDiv(
-            this.$appendTo
-        );
+        const $root = createDiv(this.$appendTo);
         const $inputGroup = createDiv(
             $root,
             c(`input-group search-group-${this.classSuffix}`)
@@ -39,16 +37,6 @@ class SearchBar {
             at('for', `search-${this.classSuffix}`)
         );
 
-        this._setSearchEventListeners();
-
-        return $inputGroup;
-    }
-
-    trigger(input) {
-        this.onChangeFinish(input, this.$changeItem);
-    }
-
-    _setSearchEventListeners() {
         this.$searchInput.addEventListener('keyup', () => {
             clearTimeout(this.timeout);
 
@@ -57,8 +45,14 @@ class SearchBar {
             this.timeout = setTimeout(() => {
                 setInputLabel(this.$searchInput);
                 this.onChangeFinish(this.$searchInput.value, this.$changeItem);
-            }, 500);
+            }, 800);
         });
+
+        return $inputGroup;
+    }
+
+    trigger(input) {
+        this.onChangeFinish(input, this.$changeItem);
     }
 }
 

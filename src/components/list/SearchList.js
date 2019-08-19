@@ -1,13 +1,13 @@
-import { createDiv, c } from './helper';
-import { createAccordionList } from './Accordion';
+import { createDiv, c } from '../utils/helper';
+import { createAccordionList } from '../accordion/Accordion';
 import SearchBar from './SearchBar';
-import createSiteItem from './list/SiteItem';
-import { list } from './txt';
+import createSiteItem from './SiteItem';
+import { list } from '../utils/txt';
 
 class SearchList {
     constructor($appendTo, title) {
         this.$appendTo = $appendTo;
-        this.title = (title == null) ? list.title : title;
+        this.title = title == null ? list.title : title;
         this.searchValue = list.standardSearch;
     }
 
@@ -27,8 +27,7 @@ class SearchList {
             $accordion.querySelector('.acc-badge-list'),
             'list',
             ($input, changeObjects) => {
-                for (const object of changeObjects)
-                {
+                for (const object of changeObjects) {
                     if (
                         object
                             .querySelector('.list-item__title')
@@ -39,6 +38,7 @@ class SearchList {
                 }
             },
             async (searchValue, $appendTo) => {
+                chayns.showWaitCursor();
                 await fetch(
                     `${list.fetchLinkStart}${searchValue}${list.fetchLinkEnd}`
                 )
@@ -53,6 +53,7 @@ class SearchList {
                         });
                     })
                     .catch(error => console.log(error));
+                chayns.hideWaitCursor();
             },
             this.$siteList
         );
