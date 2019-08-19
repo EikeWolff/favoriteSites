@@ -9,46 +9,46 @@ import {
 import { intro as txt } from './txt';
 
 class Tapp {
-    constructor(appendTo) {
-        this.appendTo = appendTo;
+    constructor($appendTo) {
+        this.$appendTo = $appendTo;
     }
 
     render() {
-        const tapp = createDiv(this.appendTo, c('tapp'));
-        const intro = createDiv(tapp, c('tapp__intro'));
-        const content = createDiv(tapp, c('tapp__content'));
+        const $tapp = createDiv(this.$appendTo, c('tapp'));
+        const $intro = createDiv($tapp, c('tapp__intro'));
+        const $content = createDiv($tapp, c('tapp__content'));
 
-        createContentElement('h1', txt.title, intro, c('headline'));
-        const introContent = createDiv(intro, c('intro-content'));
+        createContentElement('h1', txt.title, $intro, c('headline'));
+        const $introContent = createDiv($intro, c('intro-content'));
         createContentElement(
             'p',
             txt.start,
-            introContent,
+            $introContent,
             c('intro_text')
         );
-        const introText = createContentElement(
+        const $introText = createContentElement(
             'p',
             txt.middle,
-            introContent,
+            $introContent,
             c('intro_text')
         );
         createActionText(
             txt.end,
             () => {
-                content
+                $content
                     .querySelector('.acc-root-list')
                     .classList.remove('accordion--open');
-                content
+                $content
                     .querySelector('.acc-root-form')
                     .classList.add('accordion--open');
             },
-            introText
+            $introText
         );
 
-        new SearchList(content).render();
+        new SearchList($content).render();
 
         new FormAddSide(
-            content,
+            $content,
             'react-chayns-icon ts-plus'
         ).render();
     }

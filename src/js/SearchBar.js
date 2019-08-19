@@ -1,4 +1,5 @@
 import {
+    createDiv,
     createElement,
     createContentElement,
     at,
@@ -7,57 +8,55 @@ import {
 } from './helper';
 
 class SearchBar {
-    constructor(appendTo, classSuffix, onChange, onChangeFinish, changeItem) {
-        this.appendTo = appendTo;
+    constructor($appendTo, classSuffix, onChange, onChangeFinish, $changeItem) {
+        this.$appendTo = $appendTo;
         this.classSuffix = classSuffix;
         this.onChange = onChange;
         this.onChangeFinish = onChangeFinish;
-        this.changeItem = changeItem;
+        this.$changeItem = $changeItem;
         this.timeout = null;
     }
 
     render() {
-        const root = createElement(
-            'div',
-            this.appendTo
+        const $root = createDiv(
+            this.$appendTo
         );
-        const inputGroup = createElement(
-            'div',
-            root,
+        const $inputGroup = createDiv(
+            $root,
             c(`input-group search-group-${this.classSuffix}`)
         );
         this.$searchInput = createElement(
             'input',
-            inputGroup,
+            $inputGroup,
             c(`input search-${this.classSuffix}`),
             at('id', `search-${this.classSuffix}`)
         );
         createContentElement(
             'label',
             'Suchen',
-            inputGroup,
+            $inputGroup,
             c('labelIcon'),
             at('for', `search-${this.classSuffix}`)
         );
 
         this._setSearchEventListeners();
 
-        return inputGroup;
+        return $inputGroup;
     }
 
     trigger(input) {
-        this.onChangeFinish(input, this.changeItem);
+        this.onChangeFinish(input, this.$changeItem);
     }
 
     _setSearchEventListeners() {
         this.$searchInput.addEventListener('keyup', () => {
             clearTimeout(this.timeout);
 
-            this.onChange(this.$searchInput, this.changeItem.children);
+            this.onChange(this.$searchInput, this.$changeItem.children);
 
             this.timeout = setTimeout(() => {
                 setInputLabel(this.$searchInput);
-                this.onChangeFinish(this.$searchInput.value, this.changeItem);
+                this.onChangeFinish(this.$searchInput.value, this.$changeItem);
             }, 500);
         });
     }

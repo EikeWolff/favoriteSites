@@ -1,56 +1,55 @@
-import { createElement, c } from './helper';
+import { createDiv, c } from './helper';
 import { createAccordionList } from './Accordion';
 import SearchBar from './SearchBar';
 import createSiteItem from './list/SiteItem';
 import { list } from './txt';
 
 class SearchList {
-    constructor(appendTo, title) {
-        this.appendTo = appendTo;
+    constructor($appendTo, title) {
+        this.$appendTo = $appendTo;
         this.title = (title == null) ? list.title : title;
         this.searchValue = list.standardSearch;
     }
 
     render() {
-        const accordion = createAccordionList(
+        const $accordion = createAccordionList(
             this.title,
             'ts-angle-right',
             true,
             'list',
-            this.appendTo
+            this.$appendTo
         );
-        this.$siteList = createElement(
-            'div',
-            accordion.querySelector('.acc-body-list'),
+        this.$siteList = createDiv(
+            $accordion.querySelector('.acc-body-list'),
             c('cc__list list--expandable')
         );
         const searchbar = new SearchBar(
-            accordion.querySelector('.acc-badge-list'),
+            $accordion.querySelector('.acc-badge-list'),
             'list',
-            (input, changeObjects) => {
+            ($input, changeObjects) => {
                 for (const object of changeObjects)
                 {
                     if (
                         object
                             .querySelector('.list-item__title')
                             .innerText.toUpperCase()
-                            .indexOf(input.value.toUpperCase()) > -1
+                            .indexOf($input.value.toUpperCase()) > -1
                     ) object.style.display = '';
                     else object.style.display = 'none';
                 }
             },
-            async (searchValue, appendTo) => {
+            async (searchValue, $appendTo) => {
                 await fetch(
                     `${list.fetchLinkStart}${searchValue}${list.fetchLinkEnd}`
                 )
                     .then(response => response.json())
                     .then((data) => {
-                        while (appendTo.hasChildNodes()) {
-                            appendTo.removeChild(appendTo.lastChild);
+                        while ($appendTo.hasChildNodes()) {
+                            $appendTo.removeChild($appendTo.lastChild);
                         }
 
                         data.Data.forEach((site) => {
-                            createSiteItem(site, appendTo);
+                            createSiteItem(site, $appendTo);
                         });
                     })
                     .catch(error => console.log(error));

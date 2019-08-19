@@ -22,16 +22,20 @@ export const form = {
     url: 'Url',
     comnt: 'Kommentar',
 
+    nameStandard: '',
+    emailStandard: '',
+    urlStandard: '',
+
     commitBtn: 'Registrieren',
     commitOk: 'Dein Vorschlag wurde registriert.',
     commitFail: 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
 
-    loginFail: 'Anmeldung notwendig',
+    loginFail: '',
     loginFailSub: 'Um deine Seite zu registrieren, musst du angemeldet sein.'
 };
 
 export const pattern = {
     name: "^[\\w'\\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\\]]{2,}$",
     email: "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?",
-    url: 'https?://(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b([-a-zA-Z0-9()@:%_\\+.~#?&//=]*)'
+    url: '^(https://)[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.chayns.net(/*)?'
 };

@@ -1,7 +1,7 @@
-import { createElement, createContentElement, at } from '../helper';
+import { createDiv, createContentElement, at } from '../helper';
 
-const createValidateBtn = (text, appendTo, commitFctn, ...validateElements) => {
-    createCommitBtn(text, appendTo).addEventListener(
+const createValidateBtn = (text, $appendTo, commitFctn, ...validateElements) => {
+    createCommitBtn(text, $appendTo).addEventListener(
         'click',
         () => {
             let valid = true;
@@ -14,8 +14,8 @@ const createValidateBtn = (text, appendTo, commitFctn, ...validateElements) => {
     );
 };
 
-const createCommitBtn = (text, appendTo) => {
-    const btnParent = createElement('div', appendTo, at('class', 'btn-send'));
+const createCommitBtn = (text, $appendTo) => {
+    const btnParent = createDiv($appendTo, at('class', 'btn-send'));
     createContentElement('button', text, btnParent, at('class', 'button'));
 
     return btnParent;

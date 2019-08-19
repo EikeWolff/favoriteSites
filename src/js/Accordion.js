@@ -1,5 +1,5 @@
 import {
- createElement, createContentElement, at, c
+    createDiv, createElement, createContentElement, at, c
 } from './helper';
 
 export const createAccordionList = (title, icon, open, classSuffix, appendTo) => createAccordion(title, icon, open, 'accordion-list', classSuffix, appendTo);
@@ -10,11 +10,10 @@ export const createAccordion = (
     open,
     className,
     classSuffix,
-    appendTo
+    $appendTo
 ) => {
-    const accordion = createElement(
-        'div',
-        appendTo,
+    const $accordion = createDiv(
+        $appendTo,
         c(
             `accordion ${
                 open ? 'accordion--open' : ''
@@ -22,35 +21,31 @@ export const createAccordion = (
         ),
         at('data-group', '1')
     );
-    const head = createElement(
-        'div',
-        accordion,
+    const $head = createDiv(
+        $accordion,
         c(`accordion__head acc-head-${classSuffix}`)
     );
-    const headIcon = createElement(
-        'div',
-        head,
+    const $headIcon = createDiv(
+        $head,
         c('accordion__head__icon accordion--trigger')
     );
-    createElement('i', headIcon, c(icon));
+    createElement('i', $headIcon, c(icon));
     createContentElement(
         'div',
         title,
-        head,
+        $head,
         c(`accordion__head__title  accordion--trigger acc-title-${classSuffix}`)
     );
-    createElement(
-        'div',
-        head,
+    createDiv(
+        $head,
         c(`accordion__head__right acc-badge-${classSuffix}`)
     );
-    createElement(
-        'div',
-        accordion,
+    createDiv(
+        $accordion,
         c(`accordion__body acc-body-${classSuffix}`)
     );
 
-    return accordion;
+    return $accordion;
 };
 
-export const createAccordionItem = (tag, appendTo, classSuffix) => createElement(tag, appendTo, c(`accordion__item acc-item-${classSuffix}`));
+export const createAccordionItem = (tag, $appendTo, classSuffix) => createElement(tag, $appendTo, c(`accordion__item acc-item-${classSuffix}`));
