@@ -2,13 +2,13 @@ import { createDiv, c } from '../utils/helper';
 import Accordion from '../accordion/Accordion';
 import SearchBar from './SearchBar';
 import createSiteItem from './SiteItem';
-import { list } from '../utils/txt';
+import txt from './txtList';
 
 class SearchList {
     constructor($appendTo, title) {
         this.$appendTo = $appendTo;
-        this.title = title == null ? list.title : title;
-        this.searchValue = list.standardSearch;
+        this.title = title == null ? txt.title : title;
+        this.searchValue = txt.standardSearch;
     }
 
     render() {
@@ -28,7 +28,7 @@ class SearchList {
             'list',
             // While the user is typing the list elements are filtered
             ($input, changeObjects) => {
-                changeObjects.forEach((object) => {
+                for (const object of changeObjects) {
                     if (
                         object
                             .querySelector('.list-item__title')
@@ -36,13 +36,13 @@ class SearchList {
                             .indexOf($input.value.toUpperCase()) > -1
                     ) object.style.display = '';
                     else object.style.display = 'none';
-                });
+                }
             },
             // When the user finished typing the new data is loaded
             async (searchValue, $appendTo) => {
                 chayns.showWaitCursor();
                 await fetch(
-                    `${list.fetchLinkStart}${searchValue}${list.fetchLinkEnd}`
+                    `${txt.fetchLinkStart}${searchValue}${txt.fetchLinkEnd}`
                 )
                     .then(response => response.json())
                     .then((data) => {

@@ -3,7 +3,7 @@ import FormAddSide from './form/FormAddSide';
 import {
  createDiv, createContentElement, c, createActionText
 } from './utils/helper';
-import { intro as txt } from './utils/txt';
+import txt from './txtApp';
 import './app.scss';
 
 

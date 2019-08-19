@@ -2,7 +2,8 @@ import Textfield from './Textfield';
 import Textarea from './Textarea';
 import Accordion from '../accordion/Accordion';
 import buttons from './buttons';
-import { form as txt, pattern } from '../utils/txt';
+import txt from './txtForm';
+import pattern from '../utils/txt';
 import { login } from '../utils/helper';
 import './formAddSide.scss';
 
