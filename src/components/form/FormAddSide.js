@@ -1,7 +1,7 @@
 import Textfield from './Textfield';
 import Textarea from './Textarea';
-import { createAccordion, createAccordionItem } from '../accordion/Accordion';
-import createValidateBtn from './buttons';
+import Accordion from '../accordion/Accordion';
+import buttons from './buttons';
 import { form as txt, pattern } from '../utils/txt';
 import { login } from '../utils/helper';
 import './formAddSide.scss';
@@ -14,7 +14,7 @@ class FormAddSide {
     }
 
     render() {
-        const $form = createAccordion(
+        const $form = Accordion.createAccordion(
             this.title,
             this.icon,
             false,
@@ -22,7 +22,7 @@ class FormAddSide {
             'form',
             this.$appendTo
         );
-        const $intern = createAccordionItem(
+        const $intern = Accordion.createAccordionItem(
             'div',
             $form.querySelector('.acc-body-form'),
             'intern'
@@ -93,7 +93,7 @@ class FormAddSide {
         tfUrl.render();
         taComnt.render();
 
-        createValidateBtn(
+        buttons.createValidateBtn(
             txt.commitBtn,
             $intern,
             sendForm,

@@ -1,5 +1,5 @@
 import { createDiv, c } from '../utils/helper';
-import { createAccordionList } from '../accordion/Accordion';
+import Accordion from '../accordion/Accordion';
 import SearchBar from './SearchBar';
 import createSiteItem from './SiteItem';
 import { list } from '../utils/txt';
@@ -12,7 +12,7 @@ class SearchList {
     }
 
     render() {
-        const $accordion = createAccordionList(
+        const $accordion = Accordion.createAccordionList(
             this.title,
             'ts-angle-right',
             true,
@@ -26,8 +26,9 @@ class SearchList {
         const searchbar = new SearchBar(
             $accordion.querySelector('.acc-badge-list'),
             'list',
+            // While the user is typing the list elements are filtered
             ($input, changeObjects) => {
-                for (const object of changeObjects) {
+                changeObjects.forEach((object) => {
                     if (
                         object
                             .querySelector('.list-item__title')
@@ -35,8 +36,9 @@ class SearchList {
                             .indexOf($input.value.toUpperCase()) > -1
                     ) object.style.display = '';
                     else object.style.display = 'none';
-                }
+                });
             },
+            // When the user finished typing the new data is loaded
             async (searchValue, $appendTo) => {
                 chayns.showWaitCursor();
                 await fetch(

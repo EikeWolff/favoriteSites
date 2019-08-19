@@ -41,9 +41,11 @@ class SearchBar {
         this.$searchInput.addEventListener('keyup', () => {
             clearTimeout(this.timeout);
 
+            // This is done while the user is typing
             this.onChange(this.$searchInput, this.$changeItem.children);
 
             this.timeout = setTimeout(() => {
+                // This is done after the user stopped typing
                 setInputLabel(this.$searchInput);
                 this.onChangeFinish(this.$searchInput.value, this.$changeItem);
             }, 800);
