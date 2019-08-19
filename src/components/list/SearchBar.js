@@ -6,6 +6,7 @@ import {
     c,
     setInputLabel
 } from '../utils/helper';
+import './searchBar.scss';
 
 class SearchBar {
     constructor($appendTo, classSuffix, onChange, onChangeFinish, $changeItem) {

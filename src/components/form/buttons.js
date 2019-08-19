@@ -1,4 +1,4 @@
-import { createDiv, createContentElement, at } from '../helper';
+import { createDiv, createContentElement, at } from '../utils/helper';
 
 const createValidateBtn = (
     text,

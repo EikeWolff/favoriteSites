@@ -4,7 +4,7 @@ import {
     createContentElement,
     at,
     setInputLabel
-} from '../helper';
+} from '../utils/helper';
 
 class Textarea {
     constructor(placeholder, className, inputId, $appendTo) {
@@ -42,6 +42,10 @@ class Textarea {
         this.$inputField.addEventListener('input', () => setInputLabel(this.$inputField, this.$inputLabel));
         this.$inputField.addEventListener('paste', () => setInputLabel(this.$inputField, this.$inputLabel));
         this.$inputField.addEventListener('keypress', () => setInputLabel(this.$inputField, this.$inputLabel));
+    }
+
+    get value() {
+        return this.$inputField.value;
     }
 }
 

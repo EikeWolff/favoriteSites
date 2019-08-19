@@ -1,9 +1,11 @@
-import SearchList from './SearchList';
-import FormAddSide from './FormAddSide';
+import SearchList from './list/SearchList';
+import FormAddSide from './form/FormAddSide';
 import {
  createDiv, createContentElement, c, createActionText
-} from './helper';
-import { intro as txt } from './txt';
+} from './utils/helper';
+import { intro as txt } from './utils/txt';
+import './app.scss';
+
 
 class App {
     constructor($appendTo) {

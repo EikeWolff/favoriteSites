@@ -1,4 +1,3 @@
-import './app.scss';
 import Tapp from './components/App';
 
 const init = async () => {

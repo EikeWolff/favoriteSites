@@ -2,8 +2,9 @@ import Textfield from './Textfield';
 import Textarea from './Textarea';
 import { createAccordion, createAccordionItem } from '../accordion/Accordion';
 import createValidateBtn from './buttons';
-import { form as txt, pattern } from './txt';
-import { login } from './helper';
+import { form as txt, pattern } from '../utils/txt';
+import { login } from '../utils/helper';
+import './formAddSide.scss';
 
 class FormAddSide {
     constructor($appendTo, icon, title) {
@@ -62,11 +63,11 @@ class FormAddSide {
         );
         const sendForm = () => {
             const send = () => {
-                const message = `${txt.name}: ${tfName.inputField.value}\n ${
+                const message = `${txt.name}: ${tfName.value}\n ${
                     txt.email
-                }: ${tfEmail.inputField.value}\n ${txt.url}: ${
-                    tfUrl.inputField.value
-                }\n ${txt.comnt}: ${taComnt.inputField.value}`;
+                }: ${tfEmail.value}\n ${txt.url}: ${
+                    tfUrl.value
+                }\n ${txt.comnt}: ${taComnt.value}`;
                 chayns.intercom
                     .sendMessageToPage({
                         text: message
