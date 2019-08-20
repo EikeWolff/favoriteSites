@@ -1,5 +1,4 @@
-import './app.scss';
-import TappProject from './tapp';
+import Tapp from './components/App';
 
 const init = async () => {
     'use strict';
@@ -8,7 +7,11 @@ const init = async () => {
         await chayns.ready;
         chayns.ui.initAll();
 
-        TappProject();
+        try {
+            new Tapp(document.querySelector('#app')).render();
+        } catch (err) {
+            console.log(err);
+        }
     } catch (err) {
         console.error('No chayns environment found', err);
     }
