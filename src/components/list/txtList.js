@@ -6,5 +6,7 @@ export default {
     txt_standardSearch: 'love',
 
     txt_siteImage: 'https://sub60.tobit.com/l/',
-    txt_noName: 'Kein Seitenname vorhanden 😕'
+    txt_noName: 'Kein Seitenname vorhanden 😕',
+
+    txt_emptyList: 'Es wurden leider keine Sites gefunden. Dein Suchbegriff:'
 };
