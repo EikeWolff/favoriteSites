@@ -17,17 +17,17 @@ class App {
         const $intro = createDiv($tapp, c('tapp__intro'));
         const $content = createDiv($tapp, c('tapp__content'));
 
-        createContentElement('h1', txt.title, $intro, c('headline'));
+        createContentElement('h1', txt.txt_title, $intro, c('headline'));
         const $introContent = createDiv($intro, c('intro-content'));
-        createContentElement('p', txt.start, $introContent, c('intro_text'));
+        createContentElement('p', txt.txt_start, $introContent, c('intro_text'));
         const $introText = createContentElement(
             'p',
-            txt.middle,
+            txt.txt_middle,
             $introContent,
             c('intro_text')
         );
         createActionText(
-            txt.end,
+            txt.txt_end,
             () => {
                 $content
                     .querySelector('.acc-root-list')

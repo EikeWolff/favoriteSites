@@ -1,4 +1,5 @@
 import { createDiv, c } from '../utils/helper';
+import txt from './txtList';
 
 const createSiteItem = (site, $appendTo) => {
     const $listItem = createDiv($appendTo, c('list-item list-item--clickable'));
@@ -16,12 +17,12 @@ const createSiteItem = (site, $appendTo) => {
     );
     createDiv($listItemHeader, c('list-item__spacer'));
 
-    $listItemBack.style.backgroundImage = 'url("https://chayns.tobit.com/storage/75508-06235/Images/icon-72.png")';
+    $listItemBack.style.backgroundImage = `url("${txt.txt_siteImage}75508-06235")`;
     $listItemImage.style.backgroundImage = `url("https://chayns.tobit.com/storage/${
         site.siteId
     }/Images/icon-72.png")`;
     $listItemTitle.innerText = site.appstoreName === ''
-            ? 'Kein Seitenname vorhanden 😕'
+            ? txt.txt_noName
             : site.appstoreName;
     $listItemSubtitle.innerText = '';
 

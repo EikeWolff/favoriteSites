@@ -7,8 +7,8 @@ import txt from './txtList';
 class SearchList {
     constructor($appendTo, title) {
         this.$appendTo = $appendTo;
-        this.title = title == null ? txt.title : title;
-        this.searchValue = txt.standardSearch;
+        this.title = title == null ? txt.txt_title : title;
+        this.searchValue = txt.txt_standardSearch;
     }
 
     render() {
@@ -42,7 +42,7 @@ class SearchList {
             async (searchValue, $appendTo) => {
                 chayns.showWaitCursor();
                 await fetch(
-                    `${txt.fetchLinkStart}${searchValue}${txt.fetchLinkEnd}`
+                    `${txt.txt_fetchLinkStart}${searchValue}${txt.txt_fetchLinkEnd}`
                 )
                     .then(response => response.json())
                     .then((data) => {

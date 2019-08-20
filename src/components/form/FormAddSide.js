@@ -10,7 +10,7 @@ import './formAddSide.scss';
 class FormAddSide {
     constructor($appendTo, icon, title) {
         this.$appendTo = $appendTo;
-        this.title = title == null ? txt.title : title;
+        this.title = title == null ? txt.txt_title : title;
         this.icon = icon;
     }
 
@@ -30,8 +30,8 @@ class FormAddSide {
         );
 
         const tfName = new Textfield(
-            txt.name,
-            txt.nameStandard,
+            txt.txt_name,
+            txt.txt_nameStandard,
             pattern.name,
             true,
             'form-name',
@@ -39,8 +39,8 @@ class FormAddSide {
             $intern
         );
         const tfEmail = new Textfield(
-            txt.email,
-            txt.emailStandard,
+            txt.txt_email,
+            txt.txt_emailStandard,
             pattern.email,
             true,
             'form-email',
@@ -48,8 +48,8 @@ class FormAddSide {
             $intern
         );
         const tfUrl = new Textfield(
-            txt.url,
-            txt.urlStandard,
+            txt.txt_url,
+            txt.txt_urlStandard,
             pattern.url,
             false,
             'form-url',
@@ -57,18 +57,18 @@ class FormAddSide {
             $intern
         );
         const taComnt = new Textarea(
-            txt.comnt,
+            txt.txt_comnt,
             'form-comnt',
             'formComnt',
             $intern
         );
         const sendForm = () => {
             const send = () => {
-                const message = `${txt.name}: ${tfName.value}\n ${
-                    txt.email
-                }: ${tfEmail.value}\n ${txt.url}: ${
+                const message = `${txt.txt_name}: ${tfName.value}\n ${
+                    txt.txt_email
+                }: ${tfEmail.value}\n ${txt.txt_url}: ${
                     tfUrl.value
-                }\n ${txt.comnt}: ${taComnt.value}`;
+                }\n ${txt.txt_comnt}: ${taComnt.value}`;
                 chayns.intercom
                     .sendMessageToPage({
                         text: message
@@ -80,9 +80,9 @@ class FormAddSide {
                             tfUrl.reset();
                             taComnt.reset();
 
-                            chayns.dialog.alert('', txt.commitOk);
+                            chayns.dialog.alert('', txt.txt_commitOk);
                         } else {
-                            chayns.dialog.alert('', txt.commitFail);
+                            chayns.dialog.alert('', txt.txt_commitFail);
                         }
                     });
             };
@@ -100,7 +100,7 @@ class FormAddSide {
         taComnt.render();
 
         buttons.createValidateBtn(
-            txt.commitBtn,
+            txt.txt_commitBtn,
             $intern,
             sendForm,
             tfName,
