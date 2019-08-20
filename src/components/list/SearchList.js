@@ -50,9 +50,13 @@ class SearchList {
                             $appendTo.removeChild($appendTo.lastChild);
                         }
 
-                        data.Data.forEach((site) => {
-                            createSiteItem(site, $appendTo);
-                        });
+                        if (data.Data != null) {
+                            data.Data.forEach((site) => {
+                                createSiteItem(site, $appendTo);
+                            });
+                        } else {
+                            chayns.dialog.alert('', `${txt.txt_emptyList} '${searchValue}'`);
+                        }
                     })
                     .catch(error => console.log(error));
                 chayns.hideWaitCursor();
